@@ -15,7 +15,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(params[:id])
+    @item = Item.new(item_params)
+    @item.user = current_user
     if @item.save
       redirect_to root_path, notice: "メニューが投稿されました"
     else
