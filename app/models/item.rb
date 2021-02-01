@@ -6,12 +6,14 @@ class Item < ApplicationRecord
     validates :content
     validates :images
  end
+ 
 
   belongs_to :user
   has_many_attached   :images
   has_many            :comments, dependent: :destroy
   has_one             :order
   
+
   def self.search(search)
     if search != ""
       Item.where('content LIKE(?)', "%#{search}")
